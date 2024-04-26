@@ -143,13 +143,14 @@ export const Register = ({ switchAuthHandler }) => {
                 <Input
                     className="input-field"
                     field='name'
-                    label='Name'
+  
                     value={formState.name.value}
                     onChangeHandler={handleInputValueChange}
                     type='text'
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.name.showError}
                     validationMessage={nameValidationMessage}
+                    placeholder={"Name"}
                 />
             </div>
         </div>
@@ -159,13 +160,14 @@ export const Register = ({ switchAuthHandler }) => {
                 <Input
                     className="input-field"
                     field='lastName'
-                    label='LastName'
+
                     value={formState.lastName.value}
                     onChangeHandler={handleInputValueChange}
                     type='text'
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.lastName.showError}
                     validationMessage={lastNameValidationMessage}
+                    placeholder={"LastName"}
                 />
             </div>
         </div>
@@ -175,13 +177,14 @@ export const Register = ({ switchAuthHandler }) => {
                 <Input
                     className="input-field"
                     field='username'
-                    label='Username'
+
                     value={formState.username.value}
                     onChangeHandler={handleInputValueChange}
                     type='text'
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.username.showError}
                     validationMessage={validateUsernameMessage}
+                    placeholder={"Username"}
                 />
             </div>
         </div>
@@ -191,13 +194,14 @@ export const Register = ({ switchAuthHandler }) => {
                 <Input
                     className="input-field"
                     field='email'
-                    label='Email'
+
                     value={formState.email.value}
                     onChangeHandler={handleInputValueChange}
                     type='email'
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.email.showError}
                     validationMessage={emailValidationMessage}
+                    placeholder={"Email"}
                 />
             </div>
         </div>
@@ -207,13 +211,14 @@ export const Register = ({ switchAuthHandler }) => {
                 <Input
                     className="input-field"
                     field='password'
-                    label='Password'
+
                     value={formState.password.value}
                     onChangeHandler={handleInputValueChange}
                     type='password'
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.password.showError}
                     validationMessage={validatePasswordMessage}
+                    placeholder={"Password"}
                 />
             </div>
         </div>
@@ -223,13 +228,13 @@ export const Register = ({ switchAuthHandler }) => {
                 <Input
                     className="input-field"
                     field='passwordConfir'
-                    label='ConfirmPassword'
                     value={formState.passwordConfir.value}
                     onChangeHandler={handleInputValueChange}
                     type='password'
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.passwordConfir.showError}
                     validationMessage={passwordConfirmationMessage}
+                    placeholder={"ConfirmPassword"}
                 />
             </div>
         </div>

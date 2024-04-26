@@ -111,12 +111,11 @@ export const Login = ({ switchAuthHandler }) => {
                 </div>
             </div>
 
-            <div className="submit">
-                <button onClick={handleLogin} disabled={isSubmitButtonDisabled}>
-                    Ingresar
+            <div className="submit-container">
+                <button className="submit" onClick={handleLogin} disabled={isSubmitButtonDisabled}>
+                    Sign Up
                 </button>
             </div>
-
 
             <div className="forgot-password">No tienes cuenta?-
                 <span onClick={switchAuthHandler}>

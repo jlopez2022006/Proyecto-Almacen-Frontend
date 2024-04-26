@@ -11,7 +11,7 @@ export const Input = ({
     onBlurHandler,
     textarea,
     placeholder,
-    className // Asegúrate de incluir className en la lista de props
+    className 
 }) => {
     const handleValueChange = (event) => {
         onChangeHandler(event.target.value, field)

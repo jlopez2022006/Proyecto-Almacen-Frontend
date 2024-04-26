@@ -1,12 +1,20 @@
+body {
+    background-color: #3c009d;
+    display: flex; /* Añade display flex al body para centrar el contenedor */
+    justify-content: center; /* Centra el contenedor horizontalmente */
+    align-items: center; /* Centra el contenedor verticalmente */
+    height: 100vh; /* Asegura que el body ocupe toda la altura de la pantalla */
+    margin: 0; /* Elimina los márgenes predeterminados */
+}
+
 .conteiner {
-    width: 600px;
     display: flex;
     flex-direction: column;
-    margin: auto;
-    margin-top: 200px;
-    background-color: rgb(110, 174, 230);
+    margin: auto; /* Asegura que el contenedor esté centrado */
+    width: 600px;
+    max-width: 100%; /* Asegura que el contenedor no se salga del 100% de la pantalla */
+    background: #fff;
     padding-bottom: 30px;
-    height: 60vh;
 }
 
 .header {
@@ -57,32 +65,32 @@
     margin-top: 4 7px;
     color: rgb(53, 53, 28);
     font-size: 28px;
-    margin-top: 55px;
+    margin-top: 25px;
 }
 
 .forgot-password span {
-    color: aquamarine;
+    color: #3c009d;
     cursor: pointer;
 }
 
-.submit-conteiner {
+.submit-container {
     display: flex;
-    gap: 30px;
-    margin: 60px auto;
+    justify-content: center; /* Asegura que los elementos hijos estén centrados horizontalmente */
+    gap: 30px; /* Mantiene el espacio entre los elementos hijos */
+    margin: 30px auto; /* Centra el contenedor en la página */
 }
 
-button {
-    margin-top: 20px;
-    margin-left: 65px;
+.submit {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 220px;
     height: 59px;
-    color: aquamarine;
-    background-color: blueviolet;
+    color: #fff;
+    background: #3c009d;
     border-radius: 50px;
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
+    margin: 0 auto; /* Asegura que cada botón esté centrado dentro de su contenedor */
 }
