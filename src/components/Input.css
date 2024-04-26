@@ -1,0 +1,9 @@
+input {
+    height: 50px;
+    width: 440px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: saddlebrown;
+    font-size: 19px;
+}
