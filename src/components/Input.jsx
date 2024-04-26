@@ -10,7 +10,8 @@ export const Input = ({
     validationMessage,
     onBlurHandler,
     textarea,
-    placeholder
+    placeholder,
+    className // Asegúrate de incluir className en la lista de props
 }) => {
     const handleValueChange = (event) => {
         onChangeHandler(event.target.value, field)
@@ -38,7 +39,8 @@ export const Input = ({
                     />
                 ) : (
                     <input
-                        placeholder ={placeholder}
+                        className={`input-input ${className}`} // Asegúrate de aplicar className aquí también
+                        placeholder={placeholder} // Asegúrate de aplicar placeholder aquí
                         type={type}
                         value={value}
                         onChange={handleValueChange}
