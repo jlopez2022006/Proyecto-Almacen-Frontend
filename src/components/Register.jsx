@@ -15,9 +15,11 @@ import {
     validateLastName
 } from '../shared/validators'
 import { useRegister } from '../shared/hooks'
+import { useNavigate } from "react-router-dom"
 
 export const Register = ({ switchAuthHandler }) => {
     const { register, isLoading } = useRegister()
+    const navigate = useNavigate();
 
     const [formState, setFormState] = useState({
         name: {
@@ -97,11 +99,24 @@ export const Register = ({ switchAuthHandler }) => {
         }))
     }
 
-    const handleRegister = (event) => {
-        event.preventDefault()
+    const handleRegister = async (event) => {
+        event.preventDefault();
 
-        register(formState.name.value, formState.lastName.value, formState.username.value, formState.email.value, formState.password.value)
-    }
+        try {
+            await register(
+                formState.name.value,
+                formState.lastName.value,
+                formState.username.value,
+                formState.email.value,
+                formState.password.value
+            );
+            navigate('/auth');
+            switchAuthHandler();
+        } catch (error) {
+
+            console.error("Error during registration:", error);
+        }
+    };
 
     const isSubmitButtonDisabled = isLoading ||
         !formState.name.isValid ||
@@ -174,7 +189,7 @@ export const Register = ({ switchAuthHandler }) => {
                     showErrorMessage={formState.passwordConfir.showError}
                     validationMessage={passwordConfirmationMessage}
                 />
-                <button onClick={switchAuthHandler} disabled={isSubmitButtonDisabled}>
+                <button onClick={handleRegister} disabled={isSubmitButtonDisabled}>
                     Registrarse
                 </button>
             </form>
