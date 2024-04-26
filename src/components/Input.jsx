@@ -1,4 +1,4 @@
-
+import './Input.css'
 
 export const Input = ({
     field,
@@ -9,7 +9,8 @@ export const Input = ({
     showErrorMessage,
     validationMessage,
     onBlurHandler,
-    textarea
+    textarea,
+    placeholder
 }) => {
     const handleValueChange = (event) => {
         onChangeHandler(event.target.value, field)
@@ -36,6 +37,7 @@ export const Input = ({
                     />
                 ) : (
                     <input
+                        placeholder ={placeholder}
                         type={type}
                         value={value}
                         onChange={handleValueChange}

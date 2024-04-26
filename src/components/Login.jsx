@@ -8,6 +8,10 @@ import {
     passwordConfirmationMessage
 } from '../shared/validators'
 import { useLogin } from '../shared/hooks/useLogin'
+import './Login.css'
+
+import email_icon from '../img/email.png'
+import user_icon from '../img/person.png'
 
 export const Login = ({ switchAuthHandler }) => {
     const { login, isLoading } = useLogin()
@@ -66,35 +70,59 @@ export const Login = ({ switchAuthHandler }) => {
     const isSubmitButtonDisabled = isLoading || !formState.email.isValid || !formState.password.isValid
 
     return (
-        <div>
-            <form>
-                <Input
-                    field='email'
-                    label='Email'
-                    value={formState.email.value}
-                    onChangeHandler={handleInputValueChange}
-                    type='text'
-                    onBlurHandler={handleInputValidationOnBlur}
-                    showErrorMessage={formState.email.showError}
-                    validationMessage={emailValidationMessage}
-                />
-                <Input
-                    field='password'
-                    label='Password'
-                    value={formState.password.value}
-                    onChangeHandler={handleInputValueChange}
-                    type='password'
-                    onBlurHandler={handleInputValidationOnBlur}
-                    showErrorMessage={formState.password.showError}
-                    validationMessage={validatePasswordMessage}
-                />
+        <div className="conteiner">
+            <div className="header">
+                <div className="text">Login</div>
+                <div className="underline"></div>
+            </div>
+
+            <div className="inputs">
+                <div className="input">
+                    <img src={email_icon} alt="" />
+
+                    <form>
+
+                        <Input
+                            field='email'
+                            value={formState.email.value}
+                            onChangeHandler={handleInputValueChange}
+                            type='text'
+                            onBlurHandler={handleInputValidationOnBlur}
+                            showErrorMessage={formState.email.showError}
+                            validationMessage={emailValidationMessage}
+                            placeholder={"Email"}
+                        />
+                    </form>
+                </div>
+
+                <div className="input">
+                    <img src={user_icon} alt="" />
+
+                    <form action=""> <Input
+                        field='password'
+                        value={formState.password.value}
+                        onChangeHandler={handleInputValueChange}
+                        type='password'
+                        onBlurHandler={handleInputValidationOnBlur}
+                        showErrorMessage={formState.password.showError}
+                        validationMessage={validatePasswordMessage}
+                        placeholder={"Contraseña"}
+                    /></form>
+                </div>
+            </div>
+
+            <div className="submit">
                 <button onClick={handleLogin} disabled={isSubmitButtonDisabled}>
                     Ingresar
                 </button>
-            </form>
-            <span onClick={switchAuthHandler}>
-                Registrate!
-            </span>
+            </div>
+
+
+            <div className="forgot-password">No tienes cuenta?-
+                <span onClick={switchAuthHandler}>
+                    Registrate!
+                </span></div>
+
         </div>
     )
 }
