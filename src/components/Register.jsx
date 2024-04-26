@@ -174,7 +174,7 @@ export const Register = ({ switchAuthHandler }) => {
                     showErrorMessage={formState.passwordConfir.showError}
                     validationMessage={passwordConfirmationMessage}
                 />
-                <button onClick={handleRegister} disabled={isSubmitButtonDisabled}>
+                <button onClick={switchAuthHandler} disabled={isSubmitButtonDisabled}>
                     Registrarse
                 </button>
             </form>
