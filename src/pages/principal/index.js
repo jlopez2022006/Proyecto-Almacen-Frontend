@@ -1,0 +1,1 @@
+export { PrincipalPage } from './PrincipalPage.jsx'
