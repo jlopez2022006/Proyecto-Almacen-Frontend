@@ -1,5 +1,3 @@
-
-
 export const Input = ({
     field,
     label,
@@ -9,7 +7,8 @@ export const Input = ({
     showErrorMessage,
     validationMessage,
     onBlurHandler,
-    textarea
+    textarea,
+    className // Añade esta línea para aceptar className como prop
 }) => {
     const handleValueChange = (event) => {
         onChangeHandler(event.target.value, field)
@@ -21,12 +20,13 @@ export const Input = ({
 
     return (
         <>
-            <div>
+            <div className={`input-label ${className}`}> {/* Aplica className aquí */}
                 <span>{label}</span>
             </div>
-            <div>
+            <div className={`input-field ${className}`}> {/* Aplica className aquí */}
                 {textarea ? (
                     <textarea
+                        className={`input-textarea ${className}`} // Aplica className aquí
                         type={type}
                         value={value}
                         onChange={handleValueChange}
@@ -36,14 +36,14 @@ export const Input = ({
                     />
                 ) : (
                     <input
+                        className={`input-input ${className}`} // Aplica className aquí
                         type={type}
                         value={value}
                         onChange={handleValueChange}
                         onBlur={handleInputBlur}
                     />
-
                 )}
-                <span>
+                <span className={`input-error ${className}`}> {/* Aplica className aquí */}
                     {showErrorMessage && validationMessage}
                 </span>
             </div>

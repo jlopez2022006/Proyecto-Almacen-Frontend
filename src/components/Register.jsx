@@ -17,6 +17,10 @@ import {
 import { useRegister } from '../shared/hooks'
 import { useNavigate } from "react-router-dom"
 
+import userIcon from '../assets/img/person.png'
+import emailIcon from '../assets/img/email.png'
+import passwordIcon from '../assets/img/password.png'
+
 export const Register = ({ switchAuthHandler }) => {
     const { register, isLoading } = useRegister()
     const navigate = useNavigate();
@@ -127,9 +131,17 @@ export const Register = ({ switchAuthHandler }) => {
         !formState.passwordConfir.isValid;
 
     return (
-        <div>
-            <form>
+        <div className="container">
+    <div className="header">
+        <div className="text">Sign Up</div>
+        <div className="underline"></div>
+    </div>
+    <form>
+        <div className="inputs">
+            <div className="input">
+                <img src={userIcon} alt="User Icon" />
                 <Input
+                    className="input-field"
                     field='name'
                     label='Name'
                     value={formState.name.value}
@@ -139,7 +151,13 @@ export const Register = ({ switchAuthHandler }) => {
                     showErrorMessage={formState.name.showError}
                     validationMessage={nameValidationMessage}
                 />
+            </div>
+        </div>
+        <div className="inputs">
+            <div className="input">
+                <img src={userIcon} alt="User Icon" />
                 <Input
+                    className="input-field"
                     field='lastName'
                     label='LastName'
                     value={formState.lastName.value}
@@ -149,7 +167,13 @@ export const Register = ({ switchAuthHandler }) => {
                     showErrorMessage={formState.lastName.showError}
                     validationMessage={lastNameValidationMessage}
                 />
+            </div>
+        </div>
+        <div className="inputs">
+            <div className="input">
+                <img src={userIcon} alt="User Icon" />
                 <Input
+                    className="input-field"
                     field='username'
                     label='Username'
                     value={formState.username.value}
@@ -159,17 +183,29 @@ export const Register = ({ switchAuthHandler }) => {
                     showErrorMessage={formState.username.showError}
                     validationMessage={validateUsernameMessage}
                 />
+            </div>
+        </div>
+        <div className="inputs">
+            <div className="input">
+                <img src={emailIcon} alt="Email Icon" />
                 <Input
+                    className="input-field"
                     field='email'
                     label='Email'
                     value={formState.email.value}
                     onChangeHandler={handleInputValueChange}
-                    type='text'
+                    type='email'
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.email.showError}
                     validationMessage={emailValidationMessage}
                 />
+            </div>
+        </div>
+        <div className="inputs">
+            <div className="input">
+                <img src={passwordIcon} alt="Password Icon" />
                 <Input
+                    className="input-field"
                     field='password'
                     label='Password'
                     value={formState.password.value}
@@ -179,9 +215,15 @@ export const Register = ({ switchAuthHandler }) => {
                     showErrorMessage={formState.password.showError}
                     validationMessage={validatePasswordMessage}
                 />
+            </div>
+        </div>
+        <div className="inputs">
+            <div className="input">
+                <img src={passwordIcon} alt="Password Icon" />
                 <Input
+                    className="input-field"
                     field='passwordConfir'
-                    label='Password Confirmation'
+                    label='ConfirmPassword'
                     value={formState.passwordConfir.value}
                     onChangeHandler={handleInputValueChange}
                     type='password'
@@ -189,13 +231,18 @@ export const Register = ({ switchAuthHandler }) => {
                     showErrorMessage={formState.passwordConfir.showError}
                     validationMessage={passwordConfirmationMessage}
                 />
-                <button onClick={handleRegister} disabled={isSubmitButtonDisabled}>
-                    Registrarse
-                </button>
-            </form>
-            <span onClick={switchAuthHandler} >
-                ¿Ya tienes cuenta? Inicia Sesion
+            </div>
+        </div>
+        <div className="submit-container">
+            <button className="submit" onClick={handleRegister} disabled={isSubmitButtonDisabled}>
+                Sign Up
+            </button>
+            <span className="submit" onClick={switchAuthHandler}>
+                Login
             </span>
         </div>
+    </form>
+</div>
+
     )
 }
