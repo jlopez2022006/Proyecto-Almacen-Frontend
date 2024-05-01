@@ -19,14 +19,13 @@ import {
 
 } from "../../shared/validators";
 
-import { usePostTask } from "../../shared/hooks/usePostTask";
 
 
-export const taskForm = ( { switchAuthHandler } ) => {
+export const TaskForm = ( { switchAuthHandler } ) => {
     const { postTask, isLoading } = usePostTask();
 
     const [formState, setFormState] = useState( {
-        nameTask: {
+        nombreTarea: {
             value: "",
             isValid: false,
             showError: false,
@@ -77,7 +76,7 @@ export const taskForm = ( { switchAuthHandler } ) => {
         let isValid = false;
         let validationMessage = "";
         switch ( field ) {
-            case "nameTask":
+            case "nombreTarea":
                 isValid = validateTaskName( value );
                 validationMessage = taskNameValidationMessage;
                 break;
@@ -122,7 +121,7 @@ export const taskForm = ( { switchAuthHandler } ) => {
 
     const handlePostTask = ( event ) => {
         event.preventDefault();
-        postTask( formState.nameTask.value,
+        postTask( formState.nombreTarea.value,
             formState.descripcion.value,
             formState.fechaDeInicio.value,
             formState.fechaDeCierre.value,
@@ -132,7 +131,7 @@ export const taskForm = ( { switchAuthHandler } ) => {
     }
 
     const isSubmitButtonDisabled = isLoading
-        || !formState.nameTask.isValid
+        || !formState.nombreTarea.isValid
         || !formState.descripcion.isValid
         || !formState.fechaDeInicio.isValid
         || !formState.fechaDeCierre.isValid
@@ -143,7 +142,6 @@ export const taskForm = ( { switchAuthHandler } ) => {
 
     return (
         <>
-            <div>taskForm</div>
             <form>
                 <Input
                     field="nombreTarea"
@@ -155,6 +153,75 @@ export const taskForm = ( { switchAuthHandler } ) => {
                     showErrorMessage={formState.nombreTarea.showError}
                     validationMessage={taskNameValidationMessage}
                 />
+                <Input
+                    field="descripcion"
+                    label="Descripción"
+                    value={formState.descripcion.value}
+                    onChangeHandler={handleInputValueChange}
+                    type="text"
+                    onBlurHandler={handleInputValidationOnBlur}
+                    showErrorMessage={formState.descripcion.showError}
+                    validationMessage={descriptionValidateMessage}
+                />
+                <Input
+                    field="fechaDeInicio"
+                    label="Fecha de inicio - YYYY/MM/DD"
+                    value={formState.fechaDeInicio.value}
+                    onChangeHandler={handleInputValueChange}
+                    type="text"
+                    onBlurHandler={handleInputValidationOnBlur}
+                    showErrorMessage={formState.fechaDeInicio.showError}
+                    validationMessage={dateBeginValidationMessage}
+                />
+                <Input
+                    field="fechaDeCierre"
+                    label="Fecha de cierre - YYYY/MM/DD"
+                    value={formState.fechaDeCierre.value}
+                    onChangeHandler={handleInputValueChange}
+                    type="text"
+                    onBlurHandler={handleInputValidationOnBlur}
+                    showErrorMessage={formState.fechaDeCierre.showError}
+                    validationMessage={dateFinishValidationMessage}
+                />
+                <Input
+                    field="estado"
+                    label="Estado"
+                    value={formState.estado.value}
+                    onChangeHandler={handleInputValueChange}
+                    type="text"
+                    onBlurHandler={handleInputValidationOnBlur}
+                    showErrorMessage={formState.estado.showError}
+                    validationMessage={stateValidationMessage}
+                />
+                <Input
+                    field="name"
+                    label="Nombre"
+                    value={formState.name.value}
+                    onChangeHandler={handleInputValueChange}
+                    type="text"
+                    onBlurHandler={handleInputValidationOnBlur}
+                    showErrorMessage={formState.name.showError}
+                    validationMessage={nameValidationMessage}
+                />
+                <Input
+                    field="lastName"
+                    label="Apellido"
+                    value={formState.lastName.value}
+                    onChangeHandler={handleInputValueChange}
+                    type="text"
+                    onBlurHandler={handleInputValidationOnBlur}
+                    showErrorMessage={formState.lastName.showError}
+                    validationMessage={lastNameValidationMessage}
+                />
+                <div>
+                    <button
+                        type="submit"
+                        onClick={handlePostTask}
+                        disabled={isSubmitButtonDisabled}
+                    >
+                        {isLoading ? "Cargando..." : "Crear tarea"}
+                    </button>
+                </div>
             </form>
         </>
     )
