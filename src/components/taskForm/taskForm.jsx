@@ -18,13 +18,14 @@ import {
     lastNameValidationMessage,
 
 } from "../../shared/validators";
+import "./TaskForm.css"
 
 // comment to commit
 
-export const TaskForm = ( { switchAuthHandler } ) => {
+export const TaskForm = ({ switchAuthHandler }) => {
     const { postTask, isLoading } = usePostTask();
 
-    const [formState, setFormState] = useState( {
+    const [formState, setFormState] = useState({
         nombreTarea: {
             value: "",
             isValid: false,
@@ -60,55 +61,55 @@ export const TaskForm = ( { switchAuthHandler } ) => {
             isValid: false,
             showError: false,
         },
-    } );
+    });
 
-    const handleInputValueChange = ( value, field ) => {
-        setFormState( ( prevState ) => ( {
+    const handleInputValueChange = (value, field) => {
+        setFormState((prevState) => ({
             ...prevState,
             [field]: {
                 ...prevState[field],
                 value,
             },
-        } ) );
+        }));
     };
 
-    const handleInputValidationOnBlur = ( value, field ) => {
+    const handleInputValidationOnBlur = (value, field) => {
         let isValid = false;
         let validationMessage = "";
-        switch ( field ) {
+        switch (field) {
             case "nombreTarea":
-                isValid = validateTaskName( value );
+                isValid = validateTaskName(value);
                 validationMessage = taskNameValidationMessage;
                 break;
             case "descripcion":
-                isValid = validateDescription( value );
+                isValid = validateDescription(value);
                 validationMessage = descriptionValidateMessage;
                 break;
             case "fechaDeInicio":
-                isValid = validateDate( value );
+                isValid = validateDate(value);
                 validationMessage = dateBeginValidationMessage;
                 break;
             case "fechaDeCierre":
-                isValid = validateDateFinish( value );
+                isValid = validateDateFinish(value);
                 validationMessage = dateFinishValidationMessage;
                 break;
             case "estado":
-                isValid = validateState( value );
+                isValid = validateState(value);
                 validationMessage = stateValidationMessage;
                 break;
             case "name":
-                isValid = validateName( value );
+                isValid = validateName(value);
                 validationMessage = nameValidationMessage;
                 break;
             case "lastName":
-                isValid = validateLastName( value );
+                isValid = validateLastName(value);
                 validationMessage = lastNameValidationMessage;
                 break;
             default:
                 break;
         }
 
-        setFormState( ( prevState ) => ( {
+        setFormState((prevState) => ({
             ...prevState,
             [field]: {
                 ...prevState[field],
@@ -116,18 +117,18 @@ export const TaskForm = ( { switchAuthHandler } ) => {
                 showError: !isValid,
                 validationMessage,
             },
-        } ) );
+        }));
     }
 
-    const handlePostTask = ( event ) => {
+    const handlePostTask = (event) => {
         event.preventDefault();
-        postTask( formState.nombreTarea.value,
+        postTask(formState.nombreTarea.value,
             formState.descripcion.value,
             formState.fechaDeInicio.value,
             formState.fechaDeCierre.value,
             formState.estado.value,
             formState.name.value,
-            formState.lastName.value );
+            formState.lastName.value);
     }
 
     const isSubmitButtonDisabled = isLoading
