@@ -12,7 +12,6 @@ export const usePostTask = () => {
         descripcion,
         fechaDeInicio,
         fechaDeCierre,
-        estado,
         name,
         lastName ) => {
         setIsLoading( true )
@@ -22,7 +21,6 @@ export const usePostTask = () => {
             descripcion,
             fechaDeInicio,
             fechaDeCierre,
-            estado,
             name,
             lastName
         } )

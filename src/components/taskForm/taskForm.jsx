@@ -46,11 +46,6 @@ export const TaskForm = ( { switchAuthHandler } ) => {
             isValid: false,
             showError: false,
         },
-        estado: {
-            value: "",
-            isValid: false,
-            showError: false,
-        },
         name: {
             value: "",
             isValid: false,
@@ -93,10 +88,6 @@ export const TaskForm = ( { switchAuthHandler } ) => {
                 isValid = validateDateFinish( value );
                 validationMessage = dateFinishValidationMessage;
                 break;
-            case "estado":
-                isValid = validateState( value );
-                validationMessage = stateValidationMessage;
-                break;
             case "name":
                 isValid = validateName( value );
                 validationMessage = nameValidationMessage;
@@ -126,7 +117,6 @@ export const TaskForm = ( { switchAuthHandler } ) => {
             formState.descripcion.value,
             formState.fechaDeInicio.value,
             formState.fechaDeCierre.value,
-            formState.estado.value,
             formState.name.value,
             formState.lastName.value );
     }
@@ -136,7 +126,6 @@ export const TaskForm = ( { switchAuthHandler } ) => {
         || !formState.descripcion.isValid
         || !formState.fechaDeInicio.isValid
         || !formState.fechaDeCierre.isValid
-        || !formState.estado.isValid
         || !formState.name.isValid
         || !formState.lastName.isValid;
 
@@ -183,16 +172,6 @@ export const TaskForm = ( { switchAuthHandler } ) => {
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.fechaDeCierre.showError}
                     validationMessage={dateFinishValidationMessage}
-                />
-                <Input
-                    field="estado"
-                    label="Estado"
-                    value={formState.estado.value}
-                    onChangeHandler={handleInputValueChange}
-                    type="text"
-                    onBlurHandler={handleInputValidationOnBlur}
-                    showErrorMessage={formState.estado.showError}
-                    validationMessage={stateValidationMessage}
                 />
                 <Input
                     field="name"
