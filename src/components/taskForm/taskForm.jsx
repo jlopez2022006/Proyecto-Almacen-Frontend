@@ -158,7 +158,7 @@ export const TaskForm = ( { switchAuthHandler } ) => {
                     label="Fecha de inicio - YYYY/MM/DD"
                     value={formState.fechaDeInicio.value}
                     onChangeHandler={handleInputValueChange}
-                    type="text"
+                    type="date"
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.fechaDeInicio.showError}
                     validationMessage={dateBeginValidationMessage}
@@ -168,7 +168,7 @@ export const TaskForm = ( { switchAuthHandler } ) => {
                     label="Fecha de cierre - YYYY/MM/DD"
                     value={formState.fechaDeCierre.value}
                     onChangeHandler={handleInputValueChange}
-                    type="text"
+                    type="date"
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.fechaDeCierre.showError}
                     validationMessage={dateFinishValidationMessage}
