@@ -5,7 +5,7 @@ import { getTasks as getTasksRequest, updateEstado as updateEstadoRequest, delet
 import { BsCircleFill, BsFillCheckCircleFill, BsTrashFill } from "react-icons/bs";
 
 export const PrincipalPage = () => {
-    const [tasks, setTasks] = useState([])
+    const [tasks, setTasks] = useState(null)
 
     useEffect(() => {
         getTasksRequest().then(response => {
@@ -13,25 +13,29 @@ export const PrincipalPage = () => {
                 setTasks(response.data)
             }
         }).catch(err => console.log(err))
-    })
+    }, [])
 
     const handleEdit = (id) => {
         updateEstadoRequest(id)
     }
 
     const handleDelete = (id) => {
-        deleteTaskRequest(id).then(response => {
-            if (response.data) {
-                setTasks(response.data)
-            }
-        }).catch(err => console.log(err))
-    }
+        deleteTaskRequest(id)
+            .then(() => {
+                // Filtrar las tareas y actualizar el estado sin esperar la respuesta del servidor
+                setTasks(prevTasks => prevTasks.filter(task => task._id !== id));
+            })
+            .catch(err => console.log(err));
+    };
+
     return (
         <div className="bg-gray-100 min-h-screen">
             <div className="mx-auto max-w-6xl px-4">
                 <h1 className="text-3xl font-bold text-center my-8">Almacenadora</h1>
                 <TaskForm />
-                {tasks.length === 0 ? (
+                {tasks === null ? ( // Verificamos si tasks es null
+                    <h2 className="text-center mt-8 text-gray-600">Cargando...</h2>
+                ) : tasks.length === 0 ? (
                     <h2 className="text-center mt-8 text-gray-600">No hay tareas</h2>
                 ) : (
                     <div className="mt-8">
