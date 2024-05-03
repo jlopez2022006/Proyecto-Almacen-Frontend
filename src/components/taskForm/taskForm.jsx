@@ -132,7 +132,7 @@ export const TaskForm = ( { switchAuthHandler } ) => {
 
     return (
         <>
-            <form>
+            <div>
                 <Input
                     field="nombreTarea"
                     label="Nombre Tarea"
@@ -155,7 +155,7 @@ export const TaskForm = ( { switchAuthHandler } ) => {
                 />
                 <Input
                     field="fechaDeInicio"
-                    label="Fecha de inicio - YYYY/MM/DD"
+                    label="Fecha de inicio"
                     value={formState.fechaDeInicio.value}
                     onChangeHandler={handleInputValueChange}
                     type="date"
@@ -165,7 +165,7 @@ export const TaskForm = ( { switchAuthHandler } ) => {
                 />
                 <Input
                     field="fechaDeCierre"
-                    label="Fecha de cierre - YYYY/MM/DD"
+                    label="Fecha de cierre"
                     value={formState.fechaDeCierre.value}
                     onChangeHandler={handleInputValueChange}
                     type="date"
@@ -198,11 +198,12 @@ export const TaskForm = ( { switchAuthHandler } ) => {
                         type="submit"
                         onClick={handlePostTask}
                         disabled={isSubmitButtonDisabled}
+                        className="taskForm_button"
                     >
                         {isLoading ? "Cargando..." : "Crear tarea"}
                     </button>
                 </div>
-            </form>
+            </div>
         </>
     )
 }

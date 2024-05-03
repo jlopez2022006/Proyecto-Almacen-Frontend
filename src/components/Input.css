@@ -1,8 +1,10 @@
 input {
-    height: 50px;
-    width: 440px;
+    width: 300px;
+    padding: 10px;
     background: transparent;
     outline: none;
     font-size: 19px;
     border-color: black;
+    border-bottom: 2px solid;
+
 }

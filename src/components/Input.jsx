@@ -1,6 +1,6 @@
 import './Input.css'
 
-export const Input = ({
+export const Input = ( {
     field,
     label,
     value,
@@ -11,25 +11,25 @@ export const Input = ({
     onBlurHandler,
     textarea,
     placeholder,
-    className 
-}) => {
-    const handleValueChange = (event) => {
-        onChangeHandler(event.target.value, field)
+    className
+} ) => {
+    const handleValueChange = ( event ) => {
+        onChangeHandler( event.target.value, field )
     }
 
-    const handleInputBlur = (event) => {
-        onBlurHandler(event.target.value, field)
+    const handleInputBlur = ( event ) => {
+        onBlurHandler( event.target.value, field )
     }
 
     return (
         <>
-            <div className={`input-label ${className}`}> {/* Aplica className aquí */}
+            <div className={`input-label ${className}`}>
                 <span>{label}</span>
             </div>
-            <div className={`input-field ${className}`}> {/* Aplica className aquí */}
+            <div className={`input-field ${className}`}>
                 {textarea ? (
                     <textarea
-                        className={`input-textarea ${className}`} // Aplica className aquí
+                        className={`input-textarea ${className}`}
                         type={type}
                         value={value}
                         onChange={handleValueChange}
@@ -39,15 +39,15 @@ export const Input = ({
                     />
                 ) : (
                     <input
-                        className={`input-input ${className}`} // Asegúrate de aplicar className aquí también
-                        placeholder={placeholder} // Asegúrate de aplicar placeholder aquí
+                        className={`input-input ${className}`}
+                        placeholder={placeholder}
                         type={type}
                         value={value}
                         onChange={handleValueChange}
                         onBlur={handleInputBlur}
                     />
                 )}
-                <span className={`input-error ${className}`}> {/* Aplica className aquí */}
+                <span className={`input-error ${className}`}>
                     {showErrorMessage && validationMessage}
                 </span>
             </div>

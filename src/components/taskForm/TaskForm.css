@@ -1,5 +1,12 @@
-body{
+body {
     background-color: white;
     margin: 0;
     color: black;
+}
+
+.taskForm_button {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
