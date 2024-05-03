@@ -111,15 +111,23 @@ export const TaskForm = ({ switchAuthHandler }) => {
         }));
     }
 
-    const handlePostTask = (event) => {
+    const handlePostTask = async (event) => {
         event.preventDefault();
-        postTask(formState.nombreTarea.value,
-            formState.descripcion.value,
-            formState.fechaDeInicio.value,
-            formState.fechaDeCierre.value,
-            formState.name.value,
-            formState.lastName.value);
-    }
+        try {
+            await postTask(
+                formState.nombreTarea.value,
+                formState.descripcion.value,
+                formState.fechaDeInicio.value,
+                formState.fechaDeCierre.value,
+                formState.name.value,
+                formState.lastName.value
+            );
+            // Recarga la página después de agregar la tarea
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const isSubmitButtonDisabled = isLoading
         || !formState.nombreTarea.isValid
@@ -145,7 +153,7 @@ export const TaskForm = ({ switchAuthHandler }) => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <Input
                             field="nombreTarea"
-                            label="Nombre Tarea"
+                            label="Nombre de la tarea"
                             value={formState.nombreTarea.value}
                             onChangeHandler={handleInputValueChange}
                             type="text"
@@ -189,7 +197,7 @@ export const TaskForm = ({ switchAuthHandler }) => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <Input
                             field="name"
-                            label="Nombre"
+                            label="Nombre del encargado"
                             value={formState.name.value}
                             onChangeHandler={handleInputValueChange}
                             type="text"
@@ -199,7 +207,7 @@ export const TaskForm = ({ switchAuthHandler }) => {
                         />
                         <Input
                             field="lastName"
-                            label="Apellido"
+                            label="Apellido del encargado"
                             value={formState.lastName.value}
                             onChangeHandler={handleInputValueChange}
                             type="text"
@@ -222,7 +230,6 @@ export const TaskForm = ({ switchAuthHandler }) => {
             </div>
         </div>
     );
-
 
 
 }

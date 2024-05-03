@@ -17,12 +17,20 @@ export const PrincipalPage = () => {
 
     const handleEdit = (id) => {
         updateEstadoRequest(id)
-    }
+            .then(() => {
+                setTasks(prevTasks => prevTasks.map(task => {
+                    if (task._id === id) {
+                        return { ...task, estado: !task.estado }; // Toggle el estado de la tarea
+                    }
+                    return task;
+                }));
+            })
+            .catch(err => console.log(err));
+    };
 
     const handleDelete = (id) => {
         deleteTaskRequest(id)
             .then(() => {
-                // Filtrar las tareas y actualizar el estado sin esperar la respuesta del servidor
                 setTasks(prevTasks => prevTasks.filter(task => task._id !== id));
             })
             .catch(err => console.log(err));
