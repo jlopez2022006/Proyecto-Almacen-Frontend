@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { TaskForm } from '../../components/taskForm'
 import "./PrincipalPage.css"
-import { getTasks as getTasksRequest, updateEstado as updateEstadoRequest } from '../../services/api.jsx'
+import { getTasks as getTasksRequest, updateEstado as updateEstadoRequest, deleteTask as deleteTaskRequest } from '../../services/api.jsx'
 import { BsCircleFill, BsFillCheckCircleFill, BsTrashFill } from "react-icons/bs";
 
 export const PrincipalPage = () => {
@@ -17,6 +17,14 @@ export const PrincipalPage = () => {
 
     const handleEdit = ( id ) => {
         updateEstadoRequest( id )
+    }
+
+    const handleDelete = ( id ) => {
+        deleteTaskRequest( id ).then( response => {
+            if ( response.data ) {
+                setTasks( response.data )
+            }
+        } ).catch( err => console.log( err ) )
     }
     return (
         <>
@@ -38,7 +46,7 @@ export const PrincipalPage = () => {
                                     <p className={task.estado ? "line_through" : ""}>{task.lastName}</p>
                                 </div>
                                 <div>
-                                    <span><BsTrashFill className="icon" /></span>
+                                    <span><BsTrashFill className="icon" onClick={() => handleDelete( task._id )} /></span>
                                 </div>
                             </div>
                         ) )
