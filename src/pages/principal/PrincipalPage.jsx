@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { TaskForm } from '../../components/taskForm'
 import "./PrincipalPage.css"
-import { getTasks as getTasksRequest } from '../../services/api.jsx'
-import { BsCircleFill, BsTrashFill } from "react-icons/bs";
+import { getTasks as getTasksRequest, updateEstado as updateEstadoRequest } from '../../services/api.jsx'
+import { BsCircleFill, BsFillCheckCircleFill, BsTrashFill } from "react-icons/bs";
 
 export const PrincipalPage = () => {
     const [tasks, setTasks] = useState( [] )
@@ -14,6 +14,10 @@ export const PrincipalPage = () => {
             }
         } ).catch( err => console.log( err ) )
     } )
+
+    const handleEdit = ( id ) => {
+        updateEstadoRequest( id )
+    }
     return (
         <>
             <div className="principal-page">
@@ -23,14 +27,15 @@ export const PrincipalPage = () => {
                     tasks.length === 0 ? <h2>No hay tareas</h2> :
                         tasks.map( ( task, index ) => (
                             <div key={index} className="task">
-                                <div className="checkbox">
-                                    <BsCircleFill className="icon" />
-                                    <h2>{task.nombreTarea}</h2>
-                                    <p>{task.descripcion}</p>
-                                    <p>{task.fechaDeInicio}</p>
-                                    <p>{task.fechaDeCierre}</p>
-                                    <p>{task.name}</p>
-                                    <p>{task.lastName}</p>
+                                <div className="checkbox" onClick={() => handleEdit( task._id )}>
+                                    {task.estado ? <BsFillCheckCircleFill className="icon"></BsFillCheckCircleFill>
+                                        : <BsCircleFill className="icon" />}
+                                    <h2 className={task.estado ? "line_through" : ""}>{task.nombreTarea}</h2>
+                                    <p className={task.estado ? "line_through" : ""}>{task.descripcion}</p>
+                                    <p className={task.estado ? "line_through" : ""}>{task.fechaDeInicio}</p>
+                                    <p className={task.estado ? "line_through" : ""}>{task.fechaDeCierre}</p>
+                                    <p className={task.estado ? "line_through" : ""}>{task.name}</p>
+                                    <p className={task.estado ? "line_through" : ""}>{task.lastName}</p>
                                 </div>
                                 <div>
                                     <span><BsTrashFill className="icon" /></span>
